@@ -23,7 +23,7 @@
     </View>
 
     <ListView
-        android:id="@+id/lv_select_contact"
+        android:id="@+id/lv_file"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="5dp">
