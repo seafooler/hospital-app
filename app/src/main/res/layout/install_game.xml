@@ -1,36 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context="com.example.seafooler.hospitalapp.InstallGameActivity">
 
-    <TextView
-        android:id="@+id/tv_path"
+    <GridView
+        android:id="@+id/gamesGridView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:text="原来的"
-        android:textColor="#66ff00"
-        android:textSize="28sp">
-    </TextView>
-
-    <!--<Button-->
-        <!--android:id="@+id/btnParent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:text="返回上级目录"-->
-        <!--&gt;-->
-
-    <!--</Button>-->
-
-    <!--<ListView-->
-        <!--android:id="@+id/files"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="match_parent"-->
-        <!--android:layout_marginTop="5dp">-->
-    <!--</ListView>-->
+        android:layout_height="match_parent"
+        android:columnWidth="120dp"
+        android:numColumns="auto_fit"
+        android:verticalSpacing="10dp"
+        android:horizontalSpacing="10dp"
+        android:stretchMode="columnWidth"
+        android:gravity="center"
+        >
+    </GridView>
 
 </LinearLayout>

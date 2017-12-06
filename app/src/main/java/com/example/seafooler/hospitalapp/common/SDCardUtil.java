@@ -1,4 +1,4 @@
-package com.example.seafooler.hospitalapp.utils;
+package com.example.seafooler.hospitalapp.common;
 
 import android.os.Environment;
 import android.util.Log;
