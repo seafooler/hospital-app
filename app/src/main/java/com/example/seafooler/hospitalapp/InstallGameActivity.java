@@ -1,9 +1,13 @@
 package com.example.seafooler.hospitalapp;
 
+import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
+import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.ArrayMap;
@@ -11,16 +15,11 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
-import android.widget.SimpleAdapter;
 import android.widget.Toast;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.InputStreamReader;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -30,10 +29,11 @@ import com.example.seafooler.hospitalapp.common.SDCardUtil;
 
 public class InstallGameActivity extends AppCompatActivity {
 
-    private String TAG = "InstallGa meActivity";
+    private String TAG = "InstallGameActivity";
     private String gamePath;
     private File[] gameFiles;
     private Map<String, Bitmap> bitmapMaps;
+    private ArrayList<String> apkNames = new ArrayList<>() ;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -41,7 +41,7 @@ public class InstallGameActivity extends AppCompatActivity {
         setContentView(R.layout.install_game);
         gamePath = createGameDir();
 
-        File gameDir = new File("gamePath");
+        File gameDir = new File(gamePath);
         try {
             gameFiles = gameDir.listFiles();
         } catch (Exception e) {
@@ -54,17 +54,37 @@ public class InstallGameActivity extends AppCompatActivity {
 
         GridView gridView = findViewById(R.id.gamesGridView);
 
-        gridView.setAdapter(new GameAdpater(this, bitmapMaps));
+        gridView.setAdapter(new GameAdpater(this, bitmapMaps, apkNames));
 
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
             @Override
             public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
-                Toast.makeText(InstallGameActivity.this, ""+position, Toast.LENGTH_SHORT).show();
+//                Toast.makeText(InstallGameActivity.this, ""+apkNames.get(position), Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                intent.setDataAndType(Uri.fromFile(new File(gamePath+apkNames.get(position)+".apk")), "application/vnd.android.package-archive");
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
             }
         });
 
     }
 
+    @Override
+    protected void onResume() {
+        /**
+         * 设定为横屏
+         */
+        if(getRequestedOrientation()!= ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE){
+            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+        }
+        super.onResume();
+    }
+
+
+    /**
+     * create the game directory under /storage/sdcard/
+     * @return String path
+     */
     private String createGameDir() {
         if (SDCardUtil.checkSdCard()) {
             SDCardUtil.createFileDir("game");
@@ -73,7 +93,7 @@ public class InstallGameActivity extends AppCompatActivity {
         }
         if (SDCardUtil.checkFileExists(SDCardUtil.getSdPath()+"game")) {
             Log.i(TAG, "Game文件夹创建成功");
-            return SDCardUtil.getSdPath()+"game";
+            return SDCardUtil.getSdPath()+"game/";
         } else {
             Log.e(TAG, "Game文件夹创建失败");
             return null;
@@ -90,7 +110,7 @@ public class InstallGameActivity extends AppCompatActivity {
         List<String> bitmapPngNames = new ArrayList<>();
         List<String> bitmapJpgNames = new ArrayList<>();
         List<String> bitmapJpegNames = new ArrayList<>();
-        List<String> apkNames = new ArrayList<>() ;
+        String fullName;
         String fileName;
         String suffix;
         String iterApkName;
@@ -100,9 +120,9 @@ public class InstallGameActivity extends AppCompatActivity {
 
         //add filename to separate lists
         for (int i=0; i< gameFiles.length; i++) {
-            fileName = gameFiles[i].getName();
-            suffix = fileName.substring(fileName.lastIndexOf(".")+1);
-
+            fullName = gameFiles[i].getName();
+            fileName = fullName.substring(0, fullName.lastIndexOf("."));
+            suffix = fullName.substring(fullName.lastIndexOf(".")+1);
             if (suffix.equals("apk")) {
                 apkNames.add(fileName);
             } else if (suffix.equals("png")){
@@ -121,7 +141,7 @@ public class InstallGameActivity extends AppCompatActivity {
             if (bitmapPngNames.contains(iterApkName)) {
                 //read the bitmap from png file
                 try {
-                    stream = new FileInputStream(iterApkName + ".png");
+                    stream = new FileInputStream( gamePath + iterApkName + ".png");
                     tmpBitmap = BitmapFactory.decodeStream(stream);
                     apkBitmapMap.put(iterApkName,tmpBitmap);
                     continue;
@@ -132,7 +152,7 @@ public class InstallGameActivity extends AppCompatActivity {
             if (bitmapJpgNames.contains(iterApkName)) {
                 //read the bitmap from jpg file
                 try {
-                    stream = new FileInputStream(iterApkName + ".jpg");
+                    stream = new FileInputStream(gamePath + iterApkName + ".jpg");
                     tmpBitmap = BitmapFactory.decodeStream(stream);
                     apkBitmapMap.put(iterApkName,tmpBitmap);
                     continue;
@@ -143,7 +163,7 @@ public class InstallGameActivity extends AppCompatActivity {
             if (bitmapJpegNames.contains(iterApkName)) {
                 //read the bitmap from jpeg file
                 try {
-                    stream = new FileInputStream(iterApkName + ".jpeg");
+                    stream = new FileInputStream( gamePath + iterApkName + ".jpeg");
                     tmpBitmap = BitmapFactory.decodeStream(stream);
                     apkBitmapMap.put(iterApkName,tmpBitmap);
                     continue;
@@ -160,19 +180,5 @@ public class InstallGameActivity extends AppCompatActivity {
         return apkBitmapMap;
 
     }
-
-
-
-/**
- * 展现所有的Apk
- *//*
-*/
-/*
-    private class ApkAdapter extends BaseAdapter {
-        public int getCount() {
-            return
-        }
-
-    }*/
 
 }

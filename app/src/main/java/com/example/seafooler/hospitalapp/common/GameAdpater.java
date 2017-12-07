@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.example.seafooler.hospitalapp.R;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -23,17 +24,14 @@ import java.util.Map;
 public class GameAdpater extends BaseAdapter {
     private Context mContext;
 
-    private Map<String, Bitmap> bms;
+    private Map<String, Bitmap> apkMap;
 
     private ArrayList<String> apkNames = new ArrayList<>();
 
-    public GameAdpater(Context c, Map<String,Bitmap> bms) {
+    public GameAdpater(Context c, Map<String,Bitmap> apkMap, ArrayList<String> apkNames) {
         mContext = c;
-        this.bms = bms;
-        // Extract all the apk names
-        for (String key : bms.keySet()) {
-            apkNames.add(key);
-        }
+        this.apkMap = apkMap;
+        this.apkNames = apkNames;
     }
 
     public int getCount() {
@@ -76,26 +74,11 @@ public class GameAdpater extends BaseAdapter {
         final ImageView ivApkCover = convertView.findViewById(R.id.apk_cover);
         final TextView tvApkName = convertView.findViewById(R.id.apk_name);
 
-        ivApkCover.setImageBitmap(bms.get(apkName));
+        ivApkCover.setImageBitmap(apkMap.get(apkName));
         tvApkName.setText(apkName);
 
         return convertView;
 
     }
-
-    //references to our images
-    /*private Integer[] mThumbIds = {
-            R.drawable.game, R.drawable.game,
-            R.drawable.game, R.drawable.game,
-            R.drawable.game, R.drawable.game,
-            R.drawable.game, R.drawable.game,
-            R.drawable.game, R.drawable.game,
-            R.drawable.game, R.drawable.game,
-            R.drawable.game, R.drawable.game,
-            R.drawable.game, R.drawable.game,
-            R.drawable.game, R.drawable.game,
-            R.drawable.game, R.drawable.game,
-            R.drawable.game, R.drawable.game
-    };*/
 
 }
