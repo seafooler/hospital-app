@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="horizontal"
-    android:padding="10px"
+    android:padding="10dp"
     tools:context="com.example.seafooler.hospitalapp.MainActivity">
 
     <LinearLayout
@@ -14,39 +14,39 @@
         android:layout_weight="2.5"
         >
 
-        <!--<ImageButton
-            android:id="@+id/game"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@drawable/game"
-            android:layout_weight="1"
-            android:layout_margin="3px">
-        </ImageButton>-->
-        <LinearLayout
+        <RelativeLayout
             android:id="@+id/game"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:orientation="vertical"
-            android:layout_margin="3px">
-        </LinearLayout>
+            android:background="@drawable/game">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:textSize="30sp"
+                android:text="@string/game"
+                android:textColor="@color/white"
+                android:layout_marginBottom="50dp"/>
+        </RelativeLayout>
 
-        <!--<ImageButton
-            android:id="@+id/video"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@drawable/video"
-            android:layout_weight="1"
-            android:layout_margin="3px">
-        </ImageButton>-->
-        <LinearLayout
+        <RelativeLayout
             android:id="@+id/video"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:orientation="vertical"
-            android:layout_margin="3px">
-        </LinearLayout>
+            android:background="@drawable/video">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:textSize="30sp"
+                android:text="@string/video"
+                android:textColor="@color/white"
+                android:layout_marginBottom="50dp"/>
+        </RelativeLayout>
 
 
     </LinearLayout>
@@ -56,39 +56,40 @@
         android:layout_height="match_parent"
         android:layout_width="match_parent"
         android:layout_weight="2">
-        <!--<ImageButton
-            android:id="@+id/comp"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@drawable/comp"
-            android:layout_margin="3px">
-        </ImageButton>-->
-        <LinearLayout
-            android:id="@+id/comp"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:layout_margin="3px">
-        </LinearLayout>
-        <!--<ImageButton
-            android:id="@+id/famous"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@drawable/famous"
-            android:layout_margin="3px">
-        </ImageButton>-->
 
-        <LinearLayout
+        <RelativeLayout
+            android:id="@+id/comp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/comp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:textSize="30sp"
+                android:text="@string/comp"
+                android:textColor="@color/white"
+                android:layout_marginBottom="90dp"/>
+        </RelativeLayout>
+
+        <RelativeLayout
             android:id="@+id/famous"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:orientation="vertical"
-            android:layout_margin="3px">
-        </LinearLayout>
+            android:background="@drawable/famous">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:textSize="30sp"
+                android:text="@string/famous"
+                android:textColor="@color/white"
+                android:layout_marginBottom="90dp"/>
+        </RelativeLayout>
 
     </LinearLayout>
 
@@ -97,39 +98,40 @@
         android:layout_height="match_parent"
         android:layout_width="match_parent"
         android:layout_weight="2.5">
-        <!--<ImageButton
-            android:id="@+id/mall"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@drawable/mall"
-            android:layout_margin="3px">
-        </ImageButton>-->
-        <LinearLayout
-            android:id="@+id/mall"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:layout_margin="3px">
-        </LinearLayout>
 
-        <!--<ImageButton
+        <RelativeLayout
+            android:id="@+id/mall"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/mall">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:textSize="30sp"
+                android:text="@string/mall"
+                android:textColor="@color/white"
+                android:layout_marginBottom="50dp"/>
+        </RelativeLayout>
+
+        <RelativeLayout
             android:id="@+id/check"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@drawable/check"
-            android:layout_margin="3px">
-        </ImageButton>-->
-        <LinearLayout
-            android:id="@+id/check"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:layout_margin="3px">
-        </LinearLayout>
+            android:background="@drawable/check">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:textSize="30sp"
+                android:text="@string/check"
+                android:textColor="@color/white"
+                android:layout_marginBottom="50dp"/>
+        </RelativeLayout>
     </LinearLayout>
 
 </LinearLayout>
