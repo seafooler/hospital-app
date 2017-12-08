@@ -7,9 +7,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 public class MainActivity extends AppCompatActivity {
@@ -70,6 +67,37 @@ public class MainActivity extends AppCompatActivity {
                 MainActivity.this.finish();
             }
         });
+
+        mall.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent mallIntent = new Intent(MainActivity.this,
+                        MallActivity.class);
+                MainActivity.this.startActivity(mallIntent);
+                MainActivity.this.finish();
+            }
+        });
+
+        comp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent compIntent = new Intent(MainActivity.this,
+                        CompActivity.class);
+                MainActivity.this.startActivity(compIntent);
+                MainActivity.this.finish();
+            }
+        });
+
+        check.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent checkIntent = new Intent(MainActivity.this,
+                        CheckActivity.class);
+                MainActivity.this.startActivity(checkIntent);
+                MainActivity.this.finish();
+            }
+        });
+
     }
 
 

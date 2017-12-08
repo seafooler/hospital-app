@@ -36,7 +36,10 @@
         <activity android:name=".InstallGameActivity" />
         <activity android:name=".PictureActivity" />
         <activity android:name=".CommonActivity" />
-        <activity android:name=".VideoActivity"></activity>
+        <activity android:name=".VideoActivity" />
+        <activity android:name=".MallActivity" />
+        <activity android:name=".CompActivity" />
+        <activity android:name=".CheckActivity"></activity>
     </application>
 
 </manifest>
