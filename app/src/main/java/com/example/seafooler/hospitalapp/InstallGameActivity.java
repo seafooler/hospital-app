@@ -7,7 +7,6 @@ import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
-import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.ArrayMap;
@@ -15,7 +14,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
-import android.widget.Toast;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -24,7 +22,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-import com.example.seafooler.hospitalapp.common.GameAdpater;
+import com.example.seafooler.hospitalapp.common.GameAdapter;
 import com.example.seafooler.hospitalapp.common.SDCardUtil;
 
 public class InstallGameActivity extends AppCompatActivity {
@@ -54,7 +52,7 @@ public class InstallGameActivity extends AppCompatActivity {
 
         GridView gridView = findViewById(R.id.gamesGridView);
 
-        gridView.setAdapter(new GameAdpater(this, bitmapMaps, apkNames));
+        gridView.setAdapter(new GameAdapter(this, bitmapMaps, apkNames));
 
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
             @Override

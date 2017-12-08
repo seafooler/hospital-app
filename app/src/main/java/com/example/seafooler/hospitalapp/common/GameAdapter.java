@@ -21,14 +21,14 @@ import java.util.Map;
  * Created by seafooler on 17-12-6.
  */
 
-public class GameAdpater extends BaseAdapter {
+public class GameAdapter extends BaseAdapter {
     private Context mContext;
 
     private Map<String, Bitmap> apkMap;
 
     private ArrayList<String> apkNames = new ArrayList<>();
 
-    public GameAdpater(Context c, Map<String,Bitmap> apkMap, ArrayList<String> apkNames) {
+    public GameAdapter(Context c, Map<String,Bitmap> apkMap, ArrayList<String> apkNames) {
         mContext = c;
         this.apkMap = apkMap;
         this.apkNames = apkNames;

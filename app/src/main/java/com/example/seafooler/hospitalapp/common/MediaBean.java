@@ -21,7 +21,7 @@ public class MediaBean {
     public String getMediaName() {
         return mediaName;
     }
-    public void setMediaName() {
+    public void setMediaName(String mediaName) {
         this.mediaName = mediaName;
     }
     public Bitmap getThumbImg() {
