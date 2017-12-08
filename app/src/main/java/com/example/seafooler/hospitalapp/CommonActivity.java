@@ -4,7 +4,10 @@ import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.GridView;
 
@@ -23,6 +26,10 @@ public class CommonActivity extends AppCompatActivity implements AdapterView.OnI
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        //隐藏状态栏
+        Window window = getWindow();
+        window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
         setContentView(R.layout.activity_common);
 
         mediaDirPath = getIntent().getStringExtra("mediaDirPath");
@@ -35,6 +42,19 @@ public class CommonActivity extends AppCompatActivity implements AdapterView.OnI
         mMediaGridView.setVisibility(View.VISIBLE);
         mMediaGridView.setAdapter(mGridAdapter);
         mMediaGridView.setOnItemClickListener(this);
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK )
+        {
+            Intent mainIntent = new Intent(CommonActivity.this,
+                    MainActivity.class);
+            CommonActivity.this.startActivity(mainIntent);
+            CommonActivity.this.finish();
+
+        }
+        return true;
     }
 
     @Override

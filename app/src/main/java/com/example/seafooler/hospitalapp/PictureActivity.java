@@ -1,5 +1,6 @@
 package com.example.seafooler.hospitalapp;
 
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -10,6 +11,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.Display;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -34,6 +36,11 @@ public class PictureActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        //隐藏状态栏
+        Window window = getWindow();
+        window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
         setContentView(R.layout.activity_picture);
         ViewGroup group = findViewById(R.id.viewGroup);
         viewPager = findViewById(R.id.viewPager);
@@ -65,6 +72,21 @@ public class PictureActivity extends AppCompatActivity {
         //设置ViewPager的默认项, 设置为长度的100倍，这样子开始就能往左滑动
         viewPager.setCurrentItem((mImageViews.length) * 100);
 
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK ) //Back to CommonActivity
+        {
+            Intent commonIntent = new Intent(PictureActivity.this,
+                    CommonActivity.class);
+            commonIntent.putExtra("mediaDirPath", picDirPath);
+            commonIntent.putExtra("mediaType", "mov");
+            PictureActivity.this.startActivity(commonIntent);
+            PictureActivity.this.finish();
+
+        }
+        return true;
     }
 
     @Override
@@ -134,7 +156,6 @@ public class PictureActivity extends AppCompatActivity {
 
 
     }
-
 
     public void onPageScrollStateChanged(int arg0) {
 

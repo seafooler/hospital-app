@@ -1,16 +1,21 @@
 package com.example.seafooler.hospitalapp;
 
+import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.MediaController;
 import android.widget.RelativeLayout;
 import android.widget.VideoView;
 
 public class VideoActivity extends AppCompatActivity {
 
-    private String videoDirPath;
+    private String movieDirPath;
     private VideoView videoView;
     private String TAG = "VideoActivity";
 
@@ -18,12 +23,17 @@ public class VideoActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        videoDirPath = getIntent().getStringExtra("videoDirPath");
+
+        //隐藏状态栏
+        Window window = getWindow();
+        window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
+        movieDirPath = getIntent().getStringExtra("videoDirPath");
         setContentView(R.layout.activity_video);
 
         //初始化控件
         videoView = findViewById(R.id.public_videoView);
-        videoView.setVideoPath(videoDirPath);
+        videoView.setVideoPath(movieDirPath);
 
         //首先拼出在资源文件夹下的视频文件路径string字符串
 
@@ -60,4 +70,31 @@ public class VideoActivity extends AppCompatActivity {
         videoView.start();
 
     }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK ) //Back to CommonActivity
+        {
+            Intent commonIntent = new Intent(VideoActivity.this,
+                    CommonActivity.class);
+            commonIntent.putExtra("mediaDirPath", movieDirPath);
+            commonIntent.putExtra("mediaType", "mov");
+            VideoActivity.this.startActivity(commonIntent);
+            VideoActivity.this.finish();
+
+        }
+        return true;
+    }
+
+    @Override
+    protected void onResume() {
+        /**
+         * 设定为横屏
+         */
+        if(getRequestedOrientation()!= ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE){
+            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+        }
+        super.onResume();
+    }
+
 }

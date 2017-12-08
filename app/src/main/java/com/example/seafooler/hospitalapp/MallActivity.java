@@ -1,8 +1,10 @@
 package com.example.seafooler.hospitalapp;
 
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.Window;
 import android.view.WindowManager;
 
@@ -16,9 +18,22 @@ public class MallActivity extends AppCompatActivity {
         window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         //隐藏标题栏
-//      getSupportActionBar().hide();
+//        getSupportActionBar().hide();
 
         setContentView(R.layout.activity_mall);
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK )
+        {
+            Intent mainIntent = new Intent(MallActivity.this,
+                    MainActivity.class);
+            MallActivity.this.startActivity(mainIntent);
+            MallActivity.this.finish();
+
+        }
+        return true;
     }
 
 

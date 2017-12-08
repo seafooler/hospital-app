@@ -33,13 +33,20 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".InstallGameActivity" />
-        <activity android:name=".PictureActivity" />
-        <activity android:name=".CommonActivity" />
-        <activity android:name=".VideoActivity" />
-        <activity android:name=".MallActivity" />
-        <activity android:name=".CompActivity" />
-        <activity android:name=".CheckActivity"></activity>
+        <activity android:name=".InstallGameActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".PictureActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".CommonActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".VideoActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".MallActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".CompActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".CheckActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
     </application>
 
 </manifest>
