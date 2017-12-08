@@ -14,23 +14,41 @@
         android:layout_weight="2.5"
         >
 
-        <ImageButton
+        <!--<ImageButton
             android:id="@+id/game"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@drawable/game"
             android:layout_weight="1"
             android:layout_margin="3px">
-        </ImageButton>
+        </ImageButton>-->
+        <LinearLayout
+            android:id="@+id/game"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:layout_margin="3px">
+        </LinearLayout>
 
-        <ImageButton
+        <!--<ImageButton
             android:id="@+id/video"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@drawable/video"
             android:layout_weight="1"
             android:layout_margin="3px">
-        </ImageButton>
+        </ImageButton>-->
+        <LinearLayout
+            android:id="@+id/video"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:layout_margin="3px">
+        </LinearLayout>
+
+
     </LinearLayout>
 
     <LinearLayout
@@ -38,22 +56,40 @@
         android:layout_height="match_parent"
         android:layout_width="match_parent"
         android:layout_weight="2">
-        <ImageButton
+        <!--<ImageButton
             android:id="@+id/comp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@drawable/comp"
             android:layout_margin="3px">
-        </ImageButton>
-        <ImageButton
+        </ImageButton>-->
+        <LinearLayout
+            android:id="@+id/comp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:layout_margin="3px">
+        </LinearLayout>
+        <!--<ImageButton
             android:id="@+id/famous"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@drawable/famous"
             android:layout_margin="3px">
-        </ImageButton>
+        </ImageButton>-->
+
+        <LinearLayout
+            android:id="@+id/famous"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:layout_margin="3px">
+        </LinearLayout>
+
     </LinearLayout>
 
     <LinearLayout
@@ -61,22 +97,39 @@
         android:layout_height="match_parent"
         android:layout_width="match_parent"
         android:layout_weight="2.5">
-        <ImageButton
+        <!--<ImageButton
             android:id="@+id/mall"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@drawable/mall"
             android:layout_margin="3px">
-        </ImageButton>
-        <ImageButton
+        </ImageButton>-->
+        <LinearLayout
+            android:id="@+id/mall"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:layout_margin="3px">
+        </LinearLayout>
+
+        <!--<ImageButton
             android:id="@+id/check"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@drawable/check"
             android:layout_margin="3px">
-        </ImageButton>
+        </ImageButton>-->
+        <LinearLayout
+            android:id="@+id/check"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:layout_margin="3px">
+        </LinearLayout>
     </LinearLayout>
 
 </LinearLayout>

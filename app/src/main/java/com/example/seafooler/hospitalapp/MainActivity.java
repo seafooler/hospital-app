@@ -8,15 +8,30 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 public class MainActivity extends AppCompatActivity {
 
-    private ImageView ivGame;
+    /*private ImageView ivGame;
     private ImageView ivVideo;
     private ImageView ivComp;
     private ImageView ivFamous;
     private ImageView ivMall;
-    private ImageView ivCheck;
+    private ImageView ivCheck;*/
+
+    private LinearLayout llGame;
+    private TextImageButton tibGame;
+    private LinearLayout llVideo;
+    private TextImageButton tibVideo;
+    private LinearLayout llComp;
+    private TextImageButton tibComp;
+    private LinearLayout llFamous;
+    private TextImageButton tibFamous;
+    private LinearLayout llMall;
+    private TextImageButton tibMall;
+    private LinearLayout llCheck;
+    private TextImageButton tibCheck;
+
 
     private String movieDirPath = "/storage/sdcard/movie";
     private String picDirPath = "/storage/sdcard/pic";
@@ -33,14 +48,42 @@ public class MainActivity extends AppCompatActivity {
 //      getSupportActionBar().hide();
 
         setContentView(R.layout.activity_main);
-        ivGame = findViewById(R.id.game);
+        /*ivGame = findViewById(R.id.game);
         ivVideo = findViewById(R.id.video);
         ivComp = findViewById(R.id.comp);
         ivFamous = findViewById(R.id.famous);
         ivMall = findViewById(R.id.mall);
-        ivCheck = findViewById(R.id.check);
+        ivCheck = findViewById(R.id.check);*/
 
-        ivGame.setOnClickListener(new View.OnClickListener() {
+        tibGame = new TextImageButton(this, R.drawable.game, R.string.game);
+        tibVideo = new TextImageButton(this, R.drawable.video, R.string.video);
+        tibComp = new TextImageButton(this, R.drawable.comp, R.string.comp);
+        tibFamous = new TextImageButton(this, R.drawable.famous, R.string.famous);
+        tibMall = new TextImageButton(this, R.drawable.mall, R.string.mall);
+        tibCheck = new TextImageButton(this, R.drawable.check, R.string.check);
+
+        llGame = findViewById(R.id.game);
+        llVideo = findViewById(R.id.video);
+        llComp = findViewById(R.id.comp);
+        llFamous = findViewById(R.id.famous);
+        llMall = findViewById(R.id.mall);
+        llCheck = findViewById(R.id.check);
+
+        llGame.addView(tibGame);
+        llVideo.addView(tibVideo);
+        llComp.addView(tibComp);
+        llFamous.addView(tibFamous);
+        llMall.addView(tibMall);
+        llCheck.addView(tibCheck);
+
+        tibGame.setText("游戏");
+        tibVideo.setText("视频点播");
+        tibComp.setText("单位介绍");
+        tibFamous.setText("名人汇");
+        tibMall.setText("商城");
+        tibCheck.setText("费用查询");
+
+        tibGame.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent gameIntent = new Intent(MainActivity.this,
@@ -50,7 +93,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        ivVideo.setOnClickListener(new View.OnClickListener() {
+        tibVideo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent commomIntent = new Intent(MainActivity.this,
@@ -62,7 +105,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        ivFamous.setOnClickListener(new View.OnClickListener() {
+        tibComp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent commomIntent = new Intent(MainActivity.this,
