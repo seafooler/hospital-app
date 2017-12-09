@@ -48,21 +48,6 @@ public class GameAdapter extends BaseAdapter {
 
     // create a new ImageView for each item referenced by the Adpater
     public View getView(int position, View convertView, ViewGroup parent) {
-        /*ImageView imageView;
-        if (convertView == null) {
-            //if it's not recycled, initialize some attributes
-            imageView = new ImageView(mContext);
-            imageView.setLayoutParams(new GridView.LayoutParams(150,150));
-            imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
-            imageView.setPadding(8 ,8 ,8, 8);
-        } else {
-            imageView = (ImageView)convertView;
-        }
-
-//        imageView.setImageResource(mThumbIds[position]);
-        imageView.setImageBitmap();
-        imageView.setImageBitmap(bms[position]);
-        return imageView;*/
 
         final String apkName = apkNames.get(position);
 

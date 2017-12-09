@@ -14,7 +14,7 @@ public class MediaBean {
     private Bitmap thumbImg;
     public String getPath() {
         return path;
-    }
+    } //Absolute path
     public void setPath(String path) {
         this.path = path;
     }
