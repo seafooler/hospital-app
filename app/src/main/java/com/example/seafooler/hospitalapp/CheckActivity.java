@@ -8,6 +8,8 @@ import android.view.KeyEvent;
 import android.view.Window;
 import android.view.WindowManager;
 
+import com.example.seafooler.hospitalapp.common.IsActivityInStack;
+
 public class CheckActivity extends AppCompatActivity {
 
     @Override
@@ -29,11 +31,12 @@ public class CheckActivity extends AppCompatActivity {
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK )
         {
-            Intent mainIntent = new Intent(CheckActivity.this,
-                    MainActivity.class);
-            CheckActivity.this.startActivity(mainIntent);
+            if (IsActivityInStack.isActivityExsit(this, MainActivity.class)) {
+                Intent mainIntent = new Intent(CheckActivity.this,
+                        MainActivity.class);
+                CheckActivity.this.startActivity(mainIntent);
+            }
             CheckActivity.this.finish();
-
         }
         return true;
     }

@@ -13,6 +13,8 @@ import android.widget.MediaController;
 import android.widget.RelativeLayout;
 import android.widget.VideoView;
 
+import com.example.seafooler.hospitalapp.common.IsActivityInStack;
+
 public class VideoActivity extends AppCompatActivity {
 
     private String movieDirPath;
@@ -75,11 +77,13 @@ public class VideoActivity extends AppCompatActivity {
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK ) //Back to CommonActivity
         {
-            Intent commonIntent = new Intent(VideoActivity.this,
-                    CommonActivity.class);
-            commonIntent.putExtra("mediaDirPath", movieDirPath);
-            commonIntent.putExtra("mediaType", "mov");
-            VideoActivity.this.startActivity(commonIntent);
+            if (IsActivityInStack.isActivityExsit(this, CommonActivity.class)) {
+                Intent commonIntent = new Intent(VideoActivity.this,
+                        CommonActivity.class);
+                commonIntent.putExtra("mediaDirPath", movieDirPath);
+                commonIntent.putExtra("mediaType", "mov");
+                VideoActivity.this.startActivity(commonIntent);
+            }
             VideoActivity.this.finish();
 
         }

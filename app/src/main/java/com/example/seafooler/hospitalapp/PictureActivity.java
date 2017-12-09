@@ -19,6 +19,7 @@ import android.view.WindowManager;
 import android.widget.ImageView;
 
 import com.example.seafooler.hospitalapp.common.InflateMediaBean;
+import com.example.seafooler.hospitalapp.common.IsActivityInStack;
 import com.example.seafooler.hospitalapp.common.MediaBean;
 import com.example.seafooler.hospitalapp.common.SlideableAdapter;
 
@@ -78,11 +79,13 @@ public class PictureActivity extends AppCompatActivity {
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK ) //Back to CommonActivity
         {
-            Intent commonIntent = new Intent(PictureActivity.this,
-                    CommonActivity.class);
-            commonIntent.putExtra("mediaDirPath", picDirPath);
-            commonIntent.putExtra("mediaType", "mov");
-            PictureActivity.this.startActivity(commonIntent);
+            if (IsActivityInStack.isActivityExsit(this, CommonActivity.class)) {
+                Intent commonIntent = new Intent(PictureActivity.this,
+                        CommonActivity.class);
+                commonIntent.putExtra("mediaDirPath", picDirPath);
+                commonIntent.putExtra("mediaType", "pic");
+                PictureActivity.this.startActivity(commonIntent);
+            }
             PictureActivity.this.finish();
 
         }

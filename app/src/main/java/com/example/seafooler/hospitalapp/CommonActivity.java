@@ -13,6 +13,7 @@ import android.widget.GridView;
 
 import com.example.seafooler.hospitalapp.common.GridAdapter;
 import com.example.seafooler.hospitalapp.common.InflateMediaBean;
+import com.example.seafooler.hospitalapp.common.IsActivityInStack;
 import com.example.seafooler.hospitalapp.common.MediaBean;
 
 import java.util.List;
@@ -48,11 +49,12 @@ public class CommonActivity extends AppCompatActivity implements AdapterView.OnI
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK )
         {
-            Intent mainIntent = new Intent(CommonActivity.this,
-                    MainActivity.class);
-            CommonActivity.this.startActivity(mainIntent);
+            if (IsActivityInStack.isActivityExsit(this, MainActivity.class)) {
+                Intent mainIntent = new Intent(CommonActivity.this,
+                        MainActivity.class);
+                CommonActivity.this.startActivity(mainIntent);
+            }
             CommonActivity.this.finish();
-
         }
         return true;
     }

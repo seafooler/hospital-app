@@ -1,20 +1,29 @@
 package com.example.seafooler.hospitalapp;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
     private String movieDirPath = "/storage/sdcard/movie";
     private String picDirPath = "/storage/sdcard/pic";
 
+    private String TAG = "MainActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +36,10 @@ public class MainActivity extends AppCompatActivity {
 //        getSupportActionBar().hide();
 
         setContentView(R.layout.activity_main);
+
+        // 添加Activity到堆栈
+
+        Log.i(TAG, "Create the Mainactivity");
 
         RelativeLayout game = findViewById(R.id.game);
         RelativeLayout video = findViewById(R.id.video);
@@ -41,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
                 Intent gameIntent = new Intent(MainActivity.this,
                         InstallGameActivity.class);
                 MainActivity.this.startActivity(gameIntent);
-                MainActivity.this.finish();
+//                MainActivity.this.finish();
             }
         });
 
@@ -53,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
                 commomIntent.putExtra("mediaDirPath", movieDirPath);
                 commomIntent.putExtra("mediaType", "mov");
                 MainActivity.this.startActivity(commomIntent);
-                MainActivity.this.finish();
+//                MainActivity.this.finish();
             }
         });
 
@@ -65,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
                 commomIntent.putExtra("mediaDirPath", picDirPath);
                 commomIntent.putExtra("mediaType", "pic");
                 MainActivity.this.startActivity(commomIntent);
-                MainActivity.this.finish();
+//                MainActivity.this.finish();
             }
         });
 
@@ -75,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
                 Intent mallIntent = new Intent(MainActivity.this,
                         MallActivity.class);
                 MainActivity.this.startActivity(mallIntent);
-                MainActivity.this.finish();
+//                MainActivity.this.finish();
             }
         });
 
@@ -85,7 +98,7 @@ public class MainActivity extends AppCompatActivity {
                 Intent compIntent = new Intent(MainActivity.this,
                         CompActivity.class);
                 MainActivity.this.startActivity(compIntent);
-                MainActivity.this.finish();
+//                MainActivity.this.finish();
             }
         });
 
@@ -95,10 +108,19 @@ public class MainActivity extends AppCompatActivity {
                 Intent checkIntent = new Intent(MainActivity.this,
                         CheckActivity.class);
                 MainActivity.this.startActivity(checkIntent);
-                MainActivity.this.finish();
+//                MainActivity.this.finish();
             }
         });
 
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK )
+        {
+            this.finish();
+        }
+        return true;
     }
 
 
@@ -112,4 +134,5 @@ public class MainActivity extends AppCompatActivity {
         }
         super.onResume();
     }
+
 }

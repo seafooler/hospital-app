@@ -26,6 +26,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.example.seafooler.hospitalapp.common.GameAdapter;
+import com.example.seafooler.hospitalapp.common.IsActivityInStack;
 import com.example.seafooler.hospitalapp.common.SDCardUtil;
 
 public class InstallGameActivity extends AppCompatActivity {
@@ -90,11 +91,12 @@ public class InstallGameActivity extends AppCompatActivity {
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK )
         {
-            Intent mainIntent = new Intent(InstallGameActivity.this,
-                    MainActivity.class);
-            InstallGameActivity.this.startActivity(mainIntent);
+            if (IsActivityInStack.isActivityExsit(this, MainActivity.class)) {
+                Intent mainIntent = new Intent(InstallGameActivity.this,
+                        MainActivity.class);
+                InstallGameActivity.this.startActivity(mainIntent);
+            }
             InstallGameActivity.this.finish();
-
         }
         return true;
     }
