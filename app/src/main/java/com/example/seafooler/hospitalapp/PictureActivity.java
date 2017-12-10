@@ -53,7 +53,7 @@ public class PictureActivity extends AppCompatActivity {
         picDirPath = getIntent().getStringExtra("picDirPath");
 
         //Inflate the bean list with InflateMediaBean
-        mPictureBean = InflateMediaBean.inflate(picDirPath, "pic");
+        mPictureBean = InflateMediaBean.inflate(picDirPath, "pic", 1);
 
         //
         mImageViews = new ImageView[mPictureBean.size()];
@@ -117,6 +117,12 @@ public class PictureActivity extends AppCompatActivity {
         int screenHeight = dm.heightPixels;
         float w = screenWidth / originalBitmap.getWidth();
         float h = screenHeight / originalBitmap.getHeight();
+        if (w <= 0 ){
+            w =1;
+        }
+        if (h <= 0) {
+            h = 1;
+        }
         if(w >= h) { //enlarge according to the smaller ratio
             w = h;
         }

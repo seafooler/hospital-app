@@ -26,7 +26,7 @@ public class InflateMediaBean {
      * @param mediaType can only handle two types currently: video and picture
      * @return List<MediaBean>
      */
-    public static List<MediaBean> inflate (String mediaDirPath, final String mediaType) {
+    public static List<MediaBean> inflate (String mediaDirPath, final String mediaType, final int layer) {
         final List<MediaBean> mMediaBean = new ArrayList<>();
         File dirMedia = new File(mediaDirPath);
 
@@ -35,18 +35,18 @@ public class InflateMediaBean {
             public boolean accept(File iterFile) {
                 String iterFileFullName = iterFile.getName();
                 if (mediaType.equals("pic")) {
-                    if (iterFile.isDirectory()) {
+                    if (iterFile.isDirectory() && layer == 0) {
                         MediaBean picSubDir = new MediaBean();
                         picSubDir.setMediaName(iterFileFullName);
                         picSubDir.setPath(iterFile.getAbsolutePath());
                         mMediaBean.add(picSubDir);
                         return true;
-                    } else {
+                    } else if (iterFile.isFile() && layer == 1){
                         String fileSuffix;
                         int posDot = iterFileFullName.indexOf(".");
                         if (posDot != -1) {
                             fileSuffix = iterFileFullName.substring(posDot);
-                            if (fileSuffix.equalsIgnoreCase(".png") || fileSuffix.equalsIgnoreCase(".jpe") || fileSuffix.equalsIgnoreCase("jpeg")) {
+                            if (fileSuffix.equalsIgnoreCase(".png") || fileSuffix.equalsIgnoreCase(".jpg") || fileSuffix.equalsIgnoreCase(".jpeg")) {
                                 MediaBean pic = new MediaBean();
                                 pic.setMediaName(iterFileFullName);
                                 pic.setPath(iterFile.getAbsolutePath());
@@ -61,6 +61,8 @@ public class InflateMediaBean {
                             Log.e(TAG, "文件名中不含“.”");
                             return false;
                         }
+                    } else {
+                        return false;
                     }
                 } else if (mediaType.equals("mov")) {
                     String fileSuffix;

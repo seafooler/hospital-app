@@ -22,7 +22,8 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    private String relativeMovieDirPath = "movie";
+//    private String relativeMovieDirPath = "movie";
+    private String relativeMovieDirPath = "tencent/QQfile_recv";
     private String relativePicDirPath = "pic";
 
     private String movieDirPath;

@@ -36,7 +36,7 @@ public class CommonActivity extends AppCompatActivity implements AdapterView.OnI
         mediaDirPath = getIntent().getStringExtra("mediaDirPath");
         mediaType = getIntent().getStringExtra("mediaType");
 
-        List<MediaBean> mMediaBean = InflateMediaBean.inflate(mediaDirPath, mediaType);
+        List<MediaBean> mMediaBean = InflateMediaBean.inflate(mediaDirPath, mediaType, 0);
 
         GridAdapter mGridAdapter = new GridAdapter(getBaseContext(), mMediaBean, mediaType, mediaDirPath);
         GridView mMediaGridView = findViewById(R.id.gv_media);
