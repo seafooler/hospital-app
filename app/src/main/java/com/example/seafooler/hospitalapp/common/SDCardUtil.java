@@ -30,7 +30,11 @@ public class SDCardUtil {
      * getExternalStorageDirectory获取路径
      */
     public static String getSdPath() {
-        return Environment.getExternalStorageDirectory()+"/";
+        if (checkSdCard()) {
+            return Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator;
+        } else {
+            return Environment.getDataDirectory() + File.separator;
+        }
     }
 
     /**

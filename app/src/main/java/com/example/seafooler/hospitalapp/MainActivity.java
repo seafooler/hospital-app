@@ -15,13 +15,18 @@ import android.view.WindowManager;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import com.example.seafooler.hospitalapp.common.SDCardUtil;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    private String movieDirPath = "/storage/sdcard/movie";
-    private String picDirPath = "/storage/sdcard/pic";
+    private String relativeMovieDirPath = "movie";
+    private String relativePicDirPath = "pic";
+
+    private String movieDirPath;
+    private String picDirPath;
 
     private String TAG = "MainActivity";
 
@@ -47,6 +52,9 @@ public class MainActivity extends AppCompatActivity {
         RelativeLayout famous = findViewById(R.id.famous);
         RelativeLayout mall = findViewById(R.id.mall);
         RelativeLayout check = findViewById(R.id.check);
+
+        movieDirPath = SDCardUtil.getSdPath() + relativeMovieDirPath;
+        picDirPath = SDCardUtil.getSdPath() + relativePicDirPath;
 
         game.setOnClickListener(new View.OnClickListener() {
             @Override
