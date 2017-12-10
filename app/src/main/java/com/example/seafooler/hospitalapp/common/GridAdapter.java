@@ -1,6 +1,7 @@
 package com.example.seafooler.hospitalapp.common;
 
 import android.content.Context;
+import android.graphics.BitmapFactory;
 import android.support.v7.widget.RecyclerView;
 import android.text.Layout;
 import android.view.LayoutInflater;
@@ -26,7 +27,9 @@ public class GridAdapter extends BaseAdapter {
     private List<MediaBean> mChildList;
     private String funcName;
     private String mediaDirPath;
-    List<String> thumbNames = new ArrayList<>();
+    List<String> thumbPngNames = new ArrayList<>();
+    List<String> thumbJpgNames = new ArrayList<>();
+    List<String> thumbJpegNames = new ArrayList<>();
 
     public GridAdapter(Context mContext, List<MediaBean> mChildList, String funcName, String mediaDirPath) {
         this.mContext = mContext;
@@ -37,16 +40,23 @@ public class GridAdapter extends BaseAdapter {
         //Add all the thumb files
         File mediaDir = new File(mediaDirPath);
         File[] mediaFiles = mediaDir.listFiles();
+
+
+        int lastIndexofDot = -1;
+
         for (int i=0; i<mediaFiles.length; i++) {
             fullName = mediaFiles[i].getName();
-            fileName = fullName.substring(0, fullName.lastIndexOf("."));
-            suffix = fullName.substring(fullName.lastIndexOf(".")+1);
-            if (suffix.equals("jpeg")) {
-                thumbNames.add(fileName);
-            } else if (suffix.equals("png")){
-                thumbNames.add(fileName);
-            } else if (suffix.equals("jpg")){
-                thumbNames.add(fileName);
+            lastIndexofDot = fullName.lastIndexOf(".");
+            if (lastIndexofDot!=-1) {
+                fileName = fullName.substring(0, lastIndexofDot);
+                suffix = fullName.substring(fullName.lastIndexOf(".") + 1);
+                if (suffix.equals("jpeg")) {
+                    thumbJpegNames.add(fileName);
+                } else if (suffix.equals("png")) {
+                    thumbPngNames.add(fileName);
+                } else if (suffix.equals("jpg")) {
+                    thumbJpgNames.add(fileName);
+                }
             }
         }
 
@@ -69,45 +79,31 @@ public class GridAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        /*if (funcName.equals("mov")) {
-            convertView = LayoutInflater.from(mContext).inflate(R.layout.movie_list_item, null);
-            final ImageView ivApkCover = convertView.findViewById(R.id.apk_cover);
-            //ImageView ivMovieItemThumb = ViewHolder.get(view, R.id.iv_game_item_thumb);
-            //ivMovieItemThumb.setImageBitmap(getItem(position).getThumbImg());
-            TextView tvMovieItem = ViewHolder.get(view, R.id.tv_movie_item);
-            tvMovieItem.setText(getItem(position).getMediaName());
-            view.setTag(getItem(position));
-        } else {
-            view = LayoutInflater.from(mContext).inflate(R.layout.pic_list_item, null);
-            TextView tvPicItem = ViewHolder.get(view, R.id.tv_pic_item);
-            tvPicItem.setText(getItem(position).getMediaName());
-            view.setTag(getItem(position));
-        }
-        return view;*/
 
         if (convertView == null) {
             final LayoutInflater layoutInflater = LayoutInflater.from(mContext);
             convertView = layoutInflater.inflate(R.layout.media_list_item, null);
         }
 
-        final ImageView ivMediaCover = convertView.findViewById(R.id.iv_movie_item_thumb);
-        final TextView tvMediaName = convertView.findViewById(R.id.tv_movie_item);
+        final ImageView ivMediaCover = convertView.findViewById(R.id.iv_media_item_thumb);
+        final TextView tvMediaName = convertView.findViewById(R.id.tv_media_item);
+        final String mediaName = getItem(position).getMediaName();
 
-        if (funcName.equals("mov")) {
-            String fullName = getItem(position).getMediaName();
-            String mediaPartPath = getItem(position).getPath().substring(0, fullName.lastIndexOf("."));
-            String mediaThumbPath;
-            File mediaDir = new File(mediaDirPath);
-            File[] mediaFiles = mediaDir.listFiles();
-            for (int i=0; i<mediaFiles.length; i++) {
-
+        if (thumbPngNames.contains(mediaName)) {
+            ivMediaCover.setImageBitmap(BitmapFactory.decodeFile(mediaDirPath+"/"+mediaName+".png"));
+        } else if (thumbJpegNames.contains(mediaName)) {
+            ivMediaCover.setImageBitmap(BitmapFactory.decodeFile(mediaDirPath+"/"+mediaName+".jpeg"));
+        } else if (thumbJpgNames.contains(mediaName)) {
+            ivMediaCover.setImageBitmap(BitmapFactory.decodeFile(mediaDirPath+"/"+mediaName+".jpg"));
+        } else {
+            if (funcName.equals("pic")) {
+                ivMediaCover.setImageBitmap(BitmapFactory.decodeResource(mContext.getResources(),R.drawable.default_famous));
+            } else {
+                ivMediaCover.setImageBitmap(BitmapFactory.decodeResource(mContext.getResources(),R.drawable.default_movie));
             }
-
         }
-
-
-        ivMediaCover.setImageBitmap(apkMap.get(apkName));
-        tvMediaName.setText(getItem(position).getMediaName());
+        tvMediaName.setText(mediaName);
+        convertView.setTag(getItem(position));
 
         return convertView;
 

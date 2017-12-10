@@ -137,7 +137,6 @@ public class InstallGameActivity extends AppCompatActivity {
         String iterApkName;
         FileInputStream stream;
         Bitmap tmpBitmap;
-        Drawable tmpDrawable;
 
         //add filename to separate lists
         for (int i=0; i< gameFiles.length; i++) {
@@ -193,8 +192,7 @@ public class InstallGameActivity extends AppCompatActivity {
                 }
             }
             //read the bitmap from drawable: default_game
-            tmpDrawable = getResources().getDrawable(R.drawable.default_game);
-            tmpBitmap = ((BitmapDrawable)tmpDrawable).getBitmap();
+            tmpBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.default_game);
             apkBitmapMap.put(iterApkName,tmpBitmap);
         }
 
