@@ -53,11 +53,11 @@ public class GameAdapter extends BaseAdapter {
 
         if (convertView == null) {
             final LayoutInflater layoutInflater = LayoutInflater.from(mContext);
-            convertView = layoutInflater.inflate(R.layout.game_unit, null);
+            convertView = layoutInflater.inflate(R.layout.apk_list_item, null);
         }
 
-        final ImageView ivApkCover = convertView.findViewById(R.id.apk_cover);
-        final TextView tvApkName = convertView.findViewById(R.id.apk_name);
+        final ImageView ivApkCover = convertView.findViewById(R.id.iv_apk_item_thumb);
+        final TextView tvApkName = convertView.findViewById(R.id.tv_apk_item);
 
         ivApkCover.setImageBitmap(apkMap.get(apkName));
         tvApkName.setText(apkName);

@@ -79,7 +79,7 @@ public class PictureActivity extends AppCompatActivity {
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK ) //Back to CommonActivity
         {
-            if (IsActivityInStack.isActivityExsit(this, CommonActivity.class)) {
+            if (! IsActivityInStack.isActivityExsit(this, CommonActivity.class)) {
                 Intent commonIntent = new Intent(PictureActivity.this,
                         CommonActivity.class);
                 commonIntent.putExtra("mediaDirPath", picDirPath);

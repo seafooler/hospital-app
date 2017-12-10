@@ -31,7 +31,7 @@ public class CheckActivity extends AppCompatActivity {
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK )
         {
-            if (IsActivityInStack.isActivityExsit(this, MainActivity.class)) {
+            if (! IsActivityInStack.isActivityExsit(this, MainActivity.class)) {
                 Intent mainIntent = new Intent(CheckActivity.this,
                         MainActivity.class);
                 CheckActivity.this.startActivity(mainIntent);

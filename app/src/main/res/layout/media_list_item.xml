@@ -1,23 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:gravity="center"
-    android:orientation="vertical">
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:orientation="vertical"
+tools:context="com.example.seafooler.hospitalapp.InstallGameActivity">
 
-    <ImageView
-        android:id="@+id/iv_media_item_thumb"
-        android:layout_width="100dp"
-        android:layout_height="100dp"></ImageView>
+<ImageView
+    android:id="@+id/iv_media_item_thumb"
+    android:layout_height="120dp"
+    android:layout_width="120dp"
+    android:layout_marginTop="20dp"
+    android:layout_gravity="center"
+    android:scaleType="centerCrop">
+</ImageView>
 
-    <TextView
-        android:id="@+id/tv_media_item"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:singleLine="true"
-        android:ellipsize="middle"
-        android:maxLength="8"
-        android:layout_marginTop="3dp"
-        ></TextView>
+<TextView
+    android:id="@+id/tv_media_item"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:textSize="20sp"
+    android:layout_gravity="center"
+    android:textStyle="bold"
+    android:paddingTop="4dp"
+    android:paddingLeft="8dp"
+    android:paddingRight="8dp"
+    android:singleLine="true"
+    android:ellipsize="middle"
+    android:maxLength="8"
+    android:gravity="center_horizontal">
+</TextView>
 
 </LinearLayout>
+
+

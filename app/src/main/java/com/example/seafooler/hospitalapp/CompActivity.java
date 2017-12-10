@@ -29,7 +29,7 @@ public class CompActivity extends AppCompatActivity {
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK )
         {
-            if (IsActivityInStack.isActivityExsit(this, MainActivity.class)) {
+            if (! IsActivityInStack.isActivityExsit(this, MainActivity.class)) {
                 Intent mainIntent = new Intent(CompActivity.this,
                         MainActivity.class);
                 CompActivity.this.startActivity(mainIntent);

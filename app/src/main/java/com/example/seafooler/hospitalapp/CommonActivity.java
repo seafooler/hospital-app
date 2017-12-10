@@ -49,7 +49,7 @@ public class CommonActivity extends AppCompatActivity implements AdapterView.OnI
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK )
         {
-            if (IsActivityInStack.isActivityExsit(this, MainActivity.class)) {
+            if (! IsActivityInStack.isActivityExsit(this, MainActivity.class)) {
                 Intent mainIntent = new Intent(CommonActivity.this,
                         MainActivity.class);
                 CommonActivity.this.startActivity(mainIntent);
